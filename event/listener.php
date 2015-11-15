@@ -53,15 +53,37 @@ class listener implements EventSubscriberInterface {
 
 	static public function getSubscribedEvents() {
 		return array(
-			'core.index_modify_page_title'				=> array('afficher_photos', 2710),
+			'core.index_modify_page_title'		=> array('afficher_photos', 2710),
+			'core.markread_before'				=> 'marquer_photos_lues',
 		);
 	}
 	
+	public function marquer_photos_lues($event) {
+		$user_id = $this->user->data["user_id"];
+		$lesPhotos = fonctionGetLastCommentaireForUser($user_id, 10, false);
+		$lesPhotos = commentaireForUser($lesPhotos, $user_id);
+		foreach ($lesPhotos['lignesMessage'] as $photo) {
+			$query = "
+				DELETE FROM `photo_track` 
+				WHERE user_id = '" . $user_id . "' 
+				AND photo_id = '" . $photo['photo_id'] . "' 
+			";
+			$this->db->sql_query($query);
+			$query = "
+				INSERT INTO `photo_track` 
+				(`user_id`, `photo_id`, `mark_time`) 
+				VALUES 
+				('" . $user_id . "', '" . $photo['photo_id'] . "', " . time() . ")
+			";
+			$this->db->sql_query($query);
+		}
+	}
+	
 	public function afficher_photos($event) {
-		
+		$user_id = $this->user->data["user_id"];
 		$this->user->add_lang_ext('Aurelienazerty/Photos', 'photos');
-		$lesPhotos = fonctionGetLastCommentaireForUser($this->user->data["user_id"], 10, false);
-		$lesPhotos = commentaireForUser($lesPhotos, $this->user->data["user_id"]);
+		$lesPhotos = fonctionGetLastCommentaireForUser($user_id, 10, false);
+		$lesPhotos = commentaireForUser($lesPhotos, $user_id);
 		
 		$tpl_loopname = 'recent_photos';
 		
