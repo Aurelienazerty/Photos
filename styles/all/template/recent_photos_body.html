@@ -1,11 +1,11 @@
 <!-- BEGIN recent_photos -->
 
 	<!-- IF recent_photos.S_FIRST_ROW -->
-	<div class="forumbg recent-topics">
+	<div class="forabg recent-topics">
 		<div class="inner">
 		<ul class="topiclist">
 			<li class="header">
-				<dl class="icon">
+				<dl class="row-item">
 					<dt><div class="list-inner">{L_RECENT_PHOTOS}</div></dt>
 					<dd class="lastpost"><span>{L_LAST_POST}</span></dd>
 				</dl>
@@ -13,26 +13,24 @@
 		</ul>
 		<ul class="topiclist topics">
 	<!-- ENDIF -->
-
-		<li class="row<!-- IF recent_photos.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF -->" >
-			<dl class="icon {recent_photos.TOPIC_IMG_STYLE}">
-				<dt title="{recent_photos.TOPIC_FOLDER_IMG_ALT}">
-					<!-- IF not S_IS_BOT --><a href="{recent_photos.U_VIEW_PHOTO}" class="icon-link"></a><!-- ENDIF -->
-					<div class="list-inner">
-						<!-- EVENT topiclist_row_prepend -->
-						<!-- IF not S_IS_BOT --><a href="{recent_photos.U_VIEW_PHOTO}">{NEWEST_POST_IMG}</a> <!-- ENDIF --><a href="{recent_photos.U_VIEW_PHOTO}" class="topictitle">{recent_photos.PHOTO_TITLE}</a>					
-						<!-- EVENT topiclist_row_append -->
-						<div class="responsive-hide">
-							{L_IN} <a href="{recent_photos.PHOTO_CONTEXTE_URL}">{recent_photos.PHOTO_CONTEXTE}</a>
+			<li class="row<!-- IF recent_photos.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF -->" >
+				<dl class="row-item {recent_photos.TOPIC_IMG_STYLE}">
+					<dt title="{recent_photos.TOPIC_FOLDER_IMG_ALT}">
+						<!-- IF not S_IS_BOT --><a href="{recent_photos.U_VIEW_PHOTO}" class="icon-link"></a><!-- ENDIF -->
+						<div class="list-inner">
+							<!-- EVENT topiclist_row_prepend -->
+							<!-- IF not S_IS_BOT --><a href="{recent_photos.U_VIEW_PHOTO}">{NEWEST_POST_IMG}</a> <!-- ENDIF --><a href="{recent_photos.U_VIEW_PHOTO}" class="topictitle">{recent_photos.PHOTO_TITLE}</a>					
+							<!-- EVENT topiclist_row_append -->
+							<div class="responsive-hide">
+								{L_IN} <a href="{recent_photos.PHOTO_CONTEXTE_URL}">{recent_photos.PHOTO_CONTEXTE}</a>
+							</div>
 						</div>
-					</div>
-				</dt>
-				<dd class="lastpost"><span><dfn>{L_LAST_POST} </dfn>{L_POST_BY_AUTHOR} {recent_photos.LAST_POST_AUTHOR_FULL}
-					<!-- IF not S_IS_BOT --><a href="{recent_photos.U_LAST_POST}" title="{L_GOTO_LAST_POST}">{LAST_POST_IMG}</a> <!-- ENDIF --><br />{recent_photos.LAST_POST_TIME}</span>
-				</dd>
-			</dl>
-		</li>
-
+					</dt>
+					<dd class="lastpost"><span><dfn>{L_LAST_POST} </dfn>{L_POST_BY_AUTHOR} {recent_photos.LAST_POST_AUTHOR_FULL}
+						<!-- IF not S_IS_BOT --><a href="{recent_photos.U_LAST_POST}" title="{L_GOTO_LAST_POST}"><i class="icon fa-external-link-square fa-fw icon-lightgray icon-md" aria-hidden="true"></i></a> <!-- ENDIF --><br />{recent_photos.LAST_POST_TIME}</span>
+					</dd>
+				</dl>
+			</li>
 	<!-- IF recent_photos.S_LAST_ROW -->
 			</ul>
 		</div>

@@ -59,6 +59,8 @@ class listener implements EventSubscriberInterface {
 	}
 	
 	public function marquer_photos_lues($event) {
+		$request = new \phpbb\request\request();
+		$request->enable_super_globals();
 		$user_id = $this->user->data["user_id"];
 		$lesPhotos = fonctionGetLastCommentaireForUser($user_id, 10, false);
 		$lesPhotos = commentaireForUser($lesPhotos, $user_id);
@@ -80,9 +82,11 @@ class listener implements EventSubscriberInterface {
 	}
 	
 	public function afficher_photos($event) {
+		$request = new \phpbb\request\request();
+		$request->enable_super_globals();
 		$user_id = $this->user->data["user_id"];
 		$this->user->add_lang_ext('Aurelienazerty/Photos', 'photos');
-		$lesPhotos = fonctionGetLastCommentaireForUser($user_id, 10, false);
+		$lesPhotos = fonctionGetLastCommentaireForUser($user_id, 10, true);
 		$lesPhotos = commentaireForUser($lesPhotos, $user_id);
 		
 		$tpl_loopname = 'recent_photos';
@@ -93,6 +97,7 @@ class listener implements EventSubscriberInterface {
 				$folder_type = 'topic_unread';
 				
 				$contexte = $photo['contexte'];
+				$indexContexte = sizeof($contexte) - 2;
 				
 				$tpl_ary = array(
 					'LAST_POST_AUTHOR_FULL'	=> get_username_string('full', $photo['user_id'], $photo['username'], $photo['user_colour']),
@@ -102,8 +107,8 @@ class listener implements EventSubscriberInterface {
 					'TOPIC_FOLDER_IMG_ALT'	=> $this->user->lang[$folder_alt],
 					'TOPIC_IMG_STYLE'				=> $folder_type,
 					'NEWEST_POST_IMG'				=> $this->user->img('icon_topic_newest', 'VIEW_NEWEST_POST'),
-					'PHOTO_CONTEXTE_URL'		=> replace_mod_rewrite($contexte[1]['href']),
-					'PHOTO_CONTEXTE'				=> $contexte[1]['txt'],
+					'PHOTO_CONTEXTE_URL'		=> replace_mod_rewrite($contexte[$indexContexte]['href']),
+					'PHOTO_CONTEXTE'				=> $contexte[$indexContexte]['txt'],
 				);
 				
 				//$vars = array('photo', 'tpl_ary');

@@ -2,10 +2,10 @@ services:
     Aurelienazerty.Photos.listener:
         class: Aurelienazerty\Photos\event\listener
         arguments:
-            - @dbal.conn
-            - @config
-            - @user
-            - @template
-            - @dispatcher
+            - '@dbal.conn'
+            - '@config'
+            - '@user'
+            - '@template'
+            - '@dispatcher'
         tags:
             - { name: event.listener }
