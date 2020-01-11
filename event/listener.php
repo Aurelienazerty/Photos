@@ -1,14 +1,14 @@
 <?php
 /**
  *
- * Photos extension for the phpBB Forum Software package.
+ * photos extension for the phpBB Forum Software package.
  *
  * @copyright (c) 2013 phpBB Limited <https://www.phpbb.com>
  * @license GNU General Public License, version 2 (GPL-2.0)
  *
  */
 
-namespace Aurelienazerty\Photos\event;
+namespace aurelienazerty\photos\event;
 
 /**
  * Event listener
@@ -40,7 +40,7 @@ class listener implements EventSubscriberInterface {
 	 * @param \phpbb\user	$user	user object
 	 * @param \phpbb\template\template $template template object
 	 * \phpbb\event\dispatcher_interface $dispatcher dispatcher object
-	 * @return \Aurelienazerty\Photos\event\listener
+	 * @return \aurelienazerty\photos\event\listener
 	 * @access public
 	 */
 	public function __construct(\phpbb\db\driver\driver_interface $db, \phpbb\config\config $config, \phpbb\user $user, \phpbb\template\template $template, \phpbb\event\dispatcher_interface $dispatcher) {
@@ -62,9 +62,9 @@ class listener implements EventSubscriberInterface {
 		$request = new \phpbb\request\request();
 		$request->enable_super_globals();
 		$user_id = $this->user->data["user_id"];
-		$lesPhotos = fonctionGetLastCommentaireForUser($user_id, 10, false);
-		$lesPhotos = commentaireForUser($lesPhotos, $user_id);
-		foreach ($lesPhotos['lignesMessage'] as $photo) {
+		$lesphotos = fonctionGetLastCommentaireForUser($user_id, 10, false);
+		$lesphotos = commentaireForUser($lesphotos, $user_id);
+		foreach ($lesphotos['lignesMessage'] as $photo) {
 			$query = "
 				DELETE FROM `photo_track` 
 				WHERE user_id = '" . $user_id . "' 
@@ -85,13 +85,13 @@ class listener implements EventSubscriberInterface {
 		$request = new \phpbb\request\request();
 		$request->enable_super_globals();
 		$user_id = $this->user->data["user_id"];
-		$this->user->add_lang_ext('Aurelienazerty/Photos', 'photos');
-		$lesPhotos = fonctionGetLastCommentaireForUser($user_id, 10, true);
-		$lesPhotos = commentaireForUser($lesPhotos, $user_id);
+		$this->user->add_lang_ext('aurelienazerty/photos', 'photos');
+		$lesphotos = fonctionGetLastCommentaireForUser($user_id, 10, true);
+		$lesphotos = commentaireForUser($lesphotos, $user_id);
 		
 		$tpl_loopname = 'recent_photos';
 		
-		foreach ($lesPhotos['lignesMessage'] as $photo) {
+		foreach ($lesphotos['lignesMessage'] as $photo) {
 			if ($photo['compteNonLu']) {
 				$folder_alt = 'UNREAD_POST';
 				$folder_type = 'topic_unread';
@@ -112,7 +112,7 @@ class listener implements EventSubscriberInterface {
 				);
 				
 				//$vars = array('photo', 'tpl_ary');
-				//extract($this->dispatcher->trigger_event('Aurelienazerty.Photos.modify_tpl_ary', compact($vars)));
+				//extract($this->dispatcher->trigger_event('aurelienazerty.photos.modify_tpl_ary', compact($vars)));
 	
 				$this->template->assign_block_vars($tpl_loopname, $tpl_ary);
 			}

@@ -1,6 +1,6 @@
 services:
-    Aurelienazerty.Photos.listener:
-        class: Aurelienazerty\Photos\event\listener
+    aurelienazerty.photos.listener:
+        class: aurelienazerty\photos\event\listener
         arguments:
             - '@dbal.conn'
             - '@config'

@@ -1,5 +1,5 @@
 {
-    "name": "Aurelienazerty/Photos",
+    "name": "aurelienazerty/photos",
     "type": "phpbb-extension",
     "description": "Affichage des dernières photos.",
     "homepage": "http://www.team-azerty.com",
@@ -9,7 +9,7 @@
     "license": "GPL-2.0",
     "authors": [
         {
-            "name": "Aurelienazerty",
+            "name": "aurelienazerty",
             "homepage": "http://www.team-azerty.com",
             "role": "Developer"
         }
@@ -18,7 +18,7 @@
         "php": ">=5.3.3"
     },
    "extra": {
-        "display-name": "Photos du site",
+        "display-name": "photos du site",
         "soft-require": {
             "phpbb/phpbb": "3.1.*"
         }
