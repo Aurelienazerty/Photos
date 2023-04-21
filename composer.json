@@ -2,7 +2,7 @@
     "name": "aurelienazerty/photos",
     "type": "phpbb-extension",
     "description": "Affichage des dernières photos.",
-    "homepage": "http://www.team-azerty.com",
+    "homepage": "https://www.team-azerty.com",
     "version": "1.0.0",
     "time": "2015-07-28",
     "keywords": ["phpbb", "extension", "photo"],
@@ -10,7 +10,7 @@
     "authors": [
         {
             "name": "aurelienazerty",
-            "homepage": "http://www.team-azerty.com",
+            "homepage": "https://www.team-azerty.com",
             "role": "Developer"
         }
     ],

@@ -7,5 +7,6 @@ services:
             - '@user'
             - '@template'
             - '@dispatcher'
+            - '@language'
         tags:
             - { name: event.listener }
